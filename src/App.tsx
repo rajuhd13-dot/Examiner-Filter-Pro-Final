@@ -824,18 +824,9 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
 
-            {/* Pill: Instant Mode Active */}
-            {isInstantLoaded && (
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/20 rounded-full border border-emerald-500/30 whitespace-nowrap">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">
-                  Instant Mode Active
-                </span>
-              </div>
-            )}
           </div>
 
-          <div className="bg-white p-1 pr-2 pl-3 rounded-full shadow-sm flex items-center gap-1.5 ml-auto">
+          <div className="bg-white p-1 pr-2 pl-3 rounded-full shadow-sm flex items-center gap-1.5 ml-auto flex-wrap">
             {/* Stats & Status Area */}
             <div className="flex items-center gap-2 shrink-0">
               {/* Total Records */}
