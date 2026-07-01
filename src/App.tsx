@@ -135,7 +135,7 @@ const Dashboard: React.FC = () => {
   const [result, setResult] = useState<FilterResult | null>(null);
   const [fullResult, setFullResult] = useState<FilterResult | null>(null);
   
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isBgSyncing, setIsBgSyncing] = useState(false);
   const [latency, setLatency] = useState<string>("Cached (Disk)");
@@ -237,7 +237,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (initialized) {
       console.log("[App] Component initialized, loading options...");
-      loadOptions(false, true, false); // Load silently on mount so user doesn't wait
+      loadOptions(false, false, true); // Load non-silently on mount to trigger connection
       const cleanup = startPolling();
       return cleanup;
     }
@@ -417,6 +417,7 @@ const Dashboard: React.FC = () => {
       } else {
         setIsSyncing(false);
       }
+      setIsLoading(false);
     }
   };
 
@@ -914,7 +915,7 @@ const Dashboard: React.FC = () => {
             <div className="w-px h-6 bg-gray-100" />
 
             {/* Actions Block */}
-            <div className="flex items-center gap-3 shrink-0 justify-end">
+            <div className="flex items-center gap-3">
               <div className="flex items-center gap-3 pr-3 border-r border-gray-100">
                 <button
                   onClick={() => handleSearch(1)}
@@ -933,7 +934,7 @@ const Dashboard: React.FC = () => {
                 </button>
               </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center gap-1.5">
                 <button
                   onClick={handleExportPDF}
                   disabled={!result}
