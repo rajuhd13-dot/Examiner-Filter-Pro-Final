@@ -1,0 +1,8 @@
+{
+  "name": "Examiner Filter Pro",
+  "description": "Powerful examiner data filtering and reporting tool with real-time Google Sheets integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
