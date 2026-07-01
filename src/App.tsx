@@ -835,9 +835,9 @@ const Dashboard: React.FC = () => {
             )}
           </div>
 
-          <div className="bg-white p-1.5 pr-4 pl-5 rounded-full shadow-sm flex items-center gap-5 ml-auto">
+          <div className="bg-white p-1 pr-3 pl-4 rounded-full shadow-sm flex items-center gap-3 ml-auto">
             {/* Stats & Status Area */}
-            <div className="flex items-center gap-4 shrink-0">
+            <div className="flex items-center gap-4 flex-wrap">
               {/* Total Records */}
               <div className="flex items-center gap-2">
                 <div className="p-1.5 bg-blue-50 rounded-lg">
@@ -957,10 +957,10 @@ const Dashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="w-full px-4 sm:px-6 py-6 flex flex-col gap-6">
+      <main className="w-full px-4 sm:px-6 py-3 flex flex-col gap-3">
 
         {/* Filter Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-x-6 gap-y-3 bg-white p-8 rounded-[32px] shadow-sm border border-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-2 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
           <FilterDropdown 
             label="Institute Name" 
             placeholder="Select Institute" 
