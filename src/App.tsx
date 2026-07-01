@@ -835,11 +835,11 @@ const Dashboard: React.FC = () => {
             )}
           </div>
 
-          <div className="bg-white p-1 pr-3 pl-4 rounded-full shadow-sm flex items-center gap-3 ml-auto">
+          <div className="bg-white p-1 pr-2 pl-3 rounded-full shadow-sm flex items-center gap-1.5 ml-auto">
             {/* Stats & Status Area */}
-            <div className="flex items-center gap-4 flex-wrap">
+            <div className="flex items-center gap-2 shrink-0">
               {/* Total Records */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <div className="p-1.5 bg-blue-50 rounded-lg">
                   <Users className="w-3.5 h-3.5 text-blue-600" />
                 </div>
@@ -863,7 +863,7 @@ const Dashboard: React.FC = () => {
               <div className="w-px h-6 bg-gray-100" />
 
               {/* Backend Status */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <div className="p-1.5 bg-indigo-50 rounded-lg">
                   <div className={cn(
                     "w-3.5 h-3.5 rounded-full flex items-center justify-center transition-all",
@@ -898,7 +898,7 @@ const Dashboard: React.FC = () => {
               {result && (
                 <>
                   <div className="w-px h-6 bg-gray-100" />
-                  <div className="flex items-center gap-2 text-blue-600">
+                  <div className="flex items-center gap-2 text-blue-600 shrink-0">
                     <div className="p-1.5 bg-blue-50 rounded-lg">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                     </div>
