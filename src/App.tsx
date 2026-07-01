@@ -915,41 +915,41 @@ const Dashboard: React.FC = () => {
             <div className="w-px h-6 bg-gray-100" />
 
             {/* Actions Block */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-3 pr-3 border-r border-gray-100">
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="flex items-center gap-3 pr-3 border-r border-gray-100 shrink-0">
                 <button
                   onClick={() => handleSearch(1)}
                   disabled={isLoading}
                   className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-black text-xs transition-all shadow-md shadow-blue-100 active:scale-95 disabled:opacity-50 whitespace-nowrap"
                 >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4 shrink-0" />}
                   Search
                 </button>
                 <button
                   onClick={handleClear}
                   className="flex items-center gap-1.5 group text-gray-400 hover:text-gray-600 transition-colors shrink-0"
                 >
-                  <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300" />
+                  <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300 shrink-0" />
                   <span className="text-xs font-bold">Clear</span>
                 </button>
               </div>
 
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={handleExportPDF}
                   disabled={!result}
-                  className="p-2 bg-purple-50 text-purple-700 hover:bg-purple-100 rounded-lg font-bold transition-all disabled:opacity-40"
+                  className="p-2 bg-purple-50 text-purple-700 hover:bg-purple-100 rounded-lg font-bold transition-all disabled:opacity-40 shrink-0"
                   title="Print PDF Report"
                 >
-                  <Printer className="w-4 h-4" />
+                  <Printer className="w-4 h-4 shrink-0" />
                 </button>
                 <button
                   onClick={handleExportExcel}
                   disabled={!result}
-                  className="p-2 bg-green-50 text-green-700 hover:bg-green-100 rounded-lg font-bold transition-all disabled:opacity-40"
+                  className="p-2 bg-green-50 text-green-700 hover:bg-green-100 rounded-lg font-bold transition-all disabled:opacity-40 shrink-0"
                   title="Export Excel (XLSX)"
                 >
-                  <FileDown className="w-4 h-4" />
+                  <FileDown className="w-4 h-4 shrink-0" />
                 </button>
               </div>
             </div>
