@@ -537,12 +537,24 @@ const Dashboard: React.FC = () => {
         console.log("[App] Filtering locally from", options.rows.length, "cached rows...");
         const allSubjects = ["english", "bangla", "physics", "chemistry", "math", "biology", "ict"];
         
-        const COL_TPIN = 2, COL_INST = 3, COL_DEPT = 4, COL_BATCH = 5;
-        const COL_EN = 9, COL_BN = 10, COL_PHY = 11, COL_CHEM = 12, COL_MATH = 13, COL_BIO = 14, COL_ICT = 15;
-        const COL_TRAIN = 16, COL_TRAIN_DATE = 17, COL_CAMPUS = 18;
+        const COL_TPIN = options.header.indexOf('T-PIN');
+        const COL_INST = options.header.indexOf('Inst.');
+        const COL_DEPT = options.header.indexOf('Dept.');
+        const COL_BATCH = options.header.indexOf('HSC Batch');
+        const COL_MOB1 = options.header.indexOf('Mobile Number');
+        const COL_ALT = options.header.indexOf('Alternate');
+        const COL_TRAIN = options.header.indexOf('Training Report');
+        const COL_TRAIN_DATE = options.header.indexOf('Training Date');
+        const COL_CAMPUS = options.header.indexOf('Physical Campus');
         
         const subjCols: Record<string, number> = {
-           english: COL_EN, bangla: COL_BN, physics: COL_PHY, chemistry: COL_CHEM, math: COL_MATH, biology: COL_BIO, ict: COL_ICT
+           english: options.header.indexOf('English(%)'),
+           bangla: options.header.indexOf('Bangla(%)'),
+           physics: options.header.indexOf('Physics(%)'),
+           chemistry: options.header.indexOf('Chemistry(%)'),
+           math: options.header.indexOf('Math(%)'),
+           biology: options.header.indexOf('Biology(%)'),
+           ict: options.header.indexOf('ICT(%)')
         };
 
         const allowEnglish = filters.allowEnglish !== null ? filters.allowEnglish : 55;
@@ -584,33 +596,51 @@ const Dashboard: React.FC = () => {
         const filteredRows = options.rows.filter(r => {
            // TPIN, Mobile 1, or Alternate Mobile
            if (q.length > 0) {
-             const tpinMatch = normalizeStr(r[COL_TPIN]).includes(q);
-             // Mobile number and alternate mobile are at indices 7 and 8 (based on keepCols: SL, Nick, TPIN, Inst, Dept, Batch, Rm, Mob1, Alt)
-             const mob1Match = normalizeStr(r[7]).includes(q);
-             const altMatch = normalizeStr(r[8]).includes(q);
+             const tpinMatch = (COL_TPIN !== -1) && normalizeStr(r[COL_TPIN]).includes(q);
+             const mob1Match = (COL_MOB1 !== -1) && normalizeStr(r[COL_MOB1]).includes(q);
+             const altMatch = (COL_ALT !== -1) && normalizeStr(r[COL_ALT]).includes(q);
              if (!tpinMatch && !mob1Match && !altMatch) return false;
            }
 
-           if (instSet.size > 0 && !instSet.has(normalizeStr(r[COL_INST]))) return false;
-           if (deptSet.size > 0 && !deptSet.has(normalizeStr(r[COL_DEPT]))) return false;
-           if (batchSet.size > 0 && !batchSet.has(normalizeStr(r[COL_BATCH]))) return false;
+           if (instSet.size > 0 && (COL_INST === -1 || !instSet.has(normalizeStr(r[COL_INST])))) return false;
+           if (deptSet.size > 0 && (COL_DEPT === -1 || !deptSet.has(normalizeStr(r[COL_DEPT])))) return false;
+           if (batchSet.size > 0 && (COL_BATCH === -1 || !batchSet.has(normalizeStr(r[COL_BATCH])))) return false;
            
-           const trn = normalizeStr(r[COL_TRAIN]) || normalizeStr("(Blank)");
-           if (trainSet.size > 0 && !trainSet.has(trn)) return false;
+           if (COL_TRAIN !== -1) {
+             const trn = normalizeStr(r[COL_TRAIN]);
+             const normalizedTrn = (trn === "" || trn === "(blank)") ? "__blank__" : trn;
+             if (trainSet.size > 0 && !trainSet.has(normalizedTrn)) return false;
+           }
            
-           const tDate = normalizeStr(r[COL_TRAIN_DATE]) || normalizeStr("(Blank)");
-           if (tDateSet.size > 0 && !tDateSet.has(tDate)) return false;
+           if (COL_TRAIN_DATE !== -1) {
+             const tDate = normalizeStr(r[COL_TRAIN_DATE]);
+             const normalizedTDate = (tDate === "" || tDate === "(blank)") ? "__blank__" : tDate;
+             if (tDateSet.size > 0 && !tDateSet.has(normalizedTDate)) return false;
+           }
            
-           const cam = normalizeStr(r[COL_CAMPUS]) || normalizeStr("(Blank)");
-           if (campusSet.size > 0 && !campusSet.has(cam)) return false;
-           
-           const tpin = normalizeStr(r[COL_TPIN]) || normalizeStr("(Blank)");
-           if (tpinSet.size > 0 && !tpinSet.has(tpin)) return false;
+           if (COL_CAMPUS !== -1) {
+             const cam = normalizeStr(r[COL_CAMPUS]);
+             const normalizedCam = (cam === "" || cam === "(blank)") ? "__blank__" : cam;
+             if (campusSet.size > 0 && !campusSet.has(normalizedCam)) return false;
+           }
+
+           if (tpinSet.size > 0) {
+              const tpin = normalizeStr(r[COL_TPIN]);
+              const normalizedTpin = (tpin === "" || tpin === "(blank)") ? "__blank__" : tpin;
+              if (COL_TPIN === -1 || !tpinSet.has(normalizedTpin)) return false;
+           }
            
            if (filters.onlyAllowed && !isAllowed(r)) return false;
            
            return true;
         });
+
+        // Debugging logs if needed for troubleshooting
+        // console.log("[App] Total rows:", options.rows.length, "Filtered rows:", filteredRows.length);
+        // if (filteredRows.length === 0 && options.rows.length > 0) {
+        //    console.log("[App] Sample row to check:", options.rows[0]);
+        //    console.log("[App] Current Filters:", filters);
+        // }
 
         const startIndex = (newPage - 1) * pageSize;
         const paginatedRows = filteredRows.slice(startIndex, startIndex + pageSize);

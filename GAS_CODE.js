@@ -510,7 +510,7 @@ function processMultiBlankAware_(arr) {
   return arr
     .map(x => {
       const s = String(x ?? '');
-      if (s === BLANK_KEY) return BLANK_KEY;
+      if (s === BLANK_LABEL || s === BLANK_KEY) return BLANK_KEY;
       const n = normalize(s);
       return n || null;
     })

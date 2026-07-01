@@ -34,7 +34,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     if (!Array.isArray(options)) return [];
     return options.map(opt => {
       if (typeof opt === "string") {
-        return { label: opt, value: opt === "(Blank)" ? "__BLANK__" : opt };
+        return { label: opt, value: opt === "(Blank)" ? "__blank__" : opt };
       }
       return opt;
     });
