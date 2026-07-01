@@ -179,6 +179,7 @@ const Dashboard: React.FC = () => {
           setLatency(`Cached (${duration}ms)`);
           setOptions(cachedOptions);
           setIsInstantLoaded(true);
+          setIsLoading(false);
         }
         
         const cachedResult = await dbStorage.getItem<FilterResult>("ex_last_res");
@@ -236,12 +237,35 @@ const Dashboard: React.FC = () => {
   // Initialize data
   useEffect(() => {
     if (initialized) {
-      console.log("[App] Component initialized, loading options...");
-      loadOptions(false, false, true); // Load non-silently on mount to trigger connection
+      console.log("[App] Component initialized, checking sync status...");
+      
+      const lastSync = localStorage.getItem("ex_last_sync_time");
+      let shouldSync = true;
+      
+      if (lastSync) {
+        const lastSyncDate = new Date(lastSync);
+        const now = new Date();
+        const isToday = lastSyncDate.toDateString() === now.toDateString();
+        const hour = now.getHours();
+        const isWithinHours = hour >= 8 && hour < 23;
+        
+        // If it was synced today within active hours, avoid a heavy sync
+        if (isToday && isWithinHours) {
+            shouldSync = false; 
+        }
+      }
+      
+      // If we need to sync, OR if we don't have instant loaded data yet, we loadOptions.
+      // If we don't need to sync and we ALREADY have data, we SKIP loadOptions.
+      
+      if (shouldSync || !isInstantLoaded) {
+          loadOptions(false, !shouldSync, true);
+      }
+      
       const cleanup = startPolling();
       return cleanup;
     }
-  }, [initialized, token]); 
+  }, [initialized, token, isInstantLoaded]);
 
   // Polling for sheet updates
   const startPolling = () => {
