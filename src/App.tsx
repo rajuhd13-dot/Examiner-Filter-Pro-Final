@@ -854,33 +854,33 @@ const Dashboard: React.FC = () => {
     <div className="min-h-screen bg-[#F0F4F9] text-gray-900 font-sans pb-12">
       {/* Top Navigation */}
       <header className="sticky top-0 z-[100] bg-blue-600 shadow-md">
-        <div className="w-full px-4 sm:px-6 min-h-16 py-2.5 xl:py-0 flex flex-col xl:flex-row items-center justify-between gap-3 xl:gap-6">
-          <div className="flex flex-wrap items-center justify-center xl:justify-start gap-3 w-full xl:w-auto">
-            <div className="bg-white/10 p-2 rounded-xl border border-white/20">
-              <FileSpreadsheet className="w-5 h-5 text-white" />
+        <div className="w-full px-4 sm:px-6 h-16 flex flex-row items-center justify-between gap-3 md:gap-6">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <div className="bg-white/10 p-1.5 sm:p-2 rounded-xl border border-white/20">
+              <FileSpreadsheet className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <h1 className="text-lg font-bold text-white tracking-tight mr-2">Examiner Pro</h1>
+            <h1 className="text-sm sm:text-lg font-bold text-white tracking-tight mr-1 sm:mr-2">Examiner Pro</h1>
             
             {/* Pill: Auto Live Sync */}
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full border border-white/10 whitespace-nowrap">
+            <div className="flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 bg-white/10 rounded-full border border-white/10 whitespace-nowrap">
               <div className={cn(
-                "w-1.5 h-1.5 rounded-full animate-pulse",
+                "w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full animate-pulse",
                 !isOnline ? "bg-amber-400" : isSyncing ? "bg-blue-400 animate-bounce" : "bg-green-400"
               )} />
-              <span className="text-[10px] font-bold text-white uppercase tracking-wider">
+              <span className="text-[8px] sm:text-[10px] font-bold text-white uppercase tracking-wider">
                 {!isOnline ? (
                   <>
-                    <span className="hidden sm:inline">Auto Live Sync: Offline (Cached)</span>
+                    <span className="hidden sm:inline">Auto Sync: Offline (Cached)</span>
                     <span className="sm:hidden">Offline (Cached)</span>
                   </>
                 ) : isSyncing ? (
                   <>
-                    <span className="hidden sm:inline">Auto Live Sync: Syncing...</span>
+                    <span className="hidden sm:inline">Auto Sync: Syncing...</span>
                     <span className="sm:hidden">Syncing...</span>
                   </>
                 ) : (
                   <>
-                    <span className="hidden sm:inline">Auto Live Sync: {formattedSyncTime}</span>
+                    <span className="hidden sm:inline">Auto Sync: {formattedSyncTime}</span>
                     <span className="sm:hidden">Sync: {formattedSyncTime}</span>
                   </>
                 )}
@@ -889,19 +889,19 @@ const Dashboard: React.FC = () => {
 
           </div>
 
-          <div className="bg-white p-1 pr-2 pl-3 rounded-full shadow-sm flex items-center gap-1.5 xl:ml-auto flex-nowrap max-w-full overflow-x-auto">
+          <div className="bg-white p-0.5 sm:p-1 pr-1.5 sm:pr-2 pl-2 sm:pl-3 rounded-full shadow-sm flex items-center gap-1 sm:gap-1.5 ml-auto flex-nowrap max-w-full">
             {/* Stats & Status Area */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               {/* Total Records */}
-              <div className="flex items-center gap-1.5 shrink-0">
-                <div className="p-1.5 bg-blue-50 rounded-lg">
-                  <Users className="w-3.5 h-3.5 text-blue-600" />
+              <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                <div className="p-1 sm:p-1.5 bg-blue-50 rounded-lg">
+                  <Users className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-blue-600" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap hidden xl:inline">Total Records</span>
-                  <span className="text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap xl:hidden">Total</span>
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs font-black text-gray-800 leading-none">
+                  <span className="text-[7px] sm:text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap hidden lg:inline">Total Records</span>
+                  <span className="text-[7px] sm:text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap lg:hidden">Total</span>
+                  <div className="flex items-center gap-0.5 sm:gap-1">
+                    <span className="text-[10px] sm:text-xs font-black text-gray-800 leading-none">
                       {options?.rowCount !== undefined ? options.rowCount : "-"}
                     </span>
                     <button 
@@ -909,46 +909,46 @@ const Dashboard: React.FC = () => {
                       className={cn("p-0.5 hover:bg-gray-100 rounded transition-colors", isSyncing && "animate-spin")}
                       title="Force Refresh Data"
                     >
-                      <RefreshCw className="w-2.5 h-2.5 text-gray-300" />
+                      <RefreshCw className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-gray-300" />
                     </button>
                   </div>
                 </div>
               </div>
               
-              <div className="w-px h-6 bg-gray-100" />
+              <div className="w-px h-5 sm:h-6 bg-gray-100" />
 
               {/* Backend Status */}
-              <div className="flex items-center gap-1.5 shrink-0">
-                <div className="p-1.5 bg-indigo-50 rounded-lg">
+              <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                <div className="p-1 sm:p-1.5 bg-indigo-50 rounded-lg">
                   <div className={cn(
-                    "w-3.5 h-3.5 rounded-full flex items-center justify-center transition-all",
+                    "w-3 sm:w-3.5 h-3 sm:h-3.5 rounded-full flex items-center justify-center transition-all",
                     isSyncing ? "bg-blue-500 animate-pulse" : (options ? "bg-emerald-500" : (isPinged ? "bg-amber-400" : "bg-red-500"))
                   )}>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full opacity-60" />
+                    <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-white rounded-full opacity-60" />
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap hidden xl:inline">Backend Status</span>
-                  <span className="text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap xl:hidden">Backend</span>
-                  <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="text-[7px] sm:text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap hidden lg:inline">Backend Status</span>
+                  <span className="text-[7px] sm:text-[9px] font-bold text-gray-400 capitalize whitespace-nowrap lg:hidden">Backend</span>
+                  <div className="flex items-center gap-1 mt-0.5">
                     <span className={cn(
-                      "text-[10px] font-black leading-none uppercase tracking-wider",
+                      "text-[8px] sm:text-[10px] font-black leading-none uppercase tracking-wider",
                       isInstantLoaded ? "text-emerald-600" : (options ? "text-emerald-600" : (isPinged ? "text-amber-600" : "text-red-600"))
                     )}>
                       {isInstantLoaded ? (
                         <>
-                          <span className="hidden xl:inline">Instant Mode Active</span>
-                          <span className="xl:hidden">Instant</span>
+                          <span className="hidden lg:inline">Instant Mode Active</span>
+                          <span className="lg:hidden">Instant</span>
                         </>
                       ) : (isSyncing ? "Syncing..." : (options ? "Connected" : (isPinged === false ? "Offline" : "Checking...")))}
                     </span>
                     {!options && !isSyncing && (
                       <button 
                         onClick={() => loadOptions()}
-                        className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+                        className="p-0.5 hover:bg-gray-100 rounded-md transition-colors"
                         title="Retry Connection"
                       >
-                        <RefreshCw className="w-2.5 h-2.5 text-gray-400" />
+                        <RefreshCw className="w-2 sm:w-2.5 h-2 sm:h-2.5 text-gray-400" />
                       </button>
                     )}
                   </div>
@@ -958,15 +958,15 @@ const Dashboard: React.FC = () => {
               {/* Dynamic Results Section */}
               {result && (
                 <>
-                  <div className="w-px h-6 bg-gray-100" />
-                  <div className="flex items-center gap-2 text-blue-600 shrink-0">
-                    <div className="p-1.5 bg-blue-50 rounded-lg">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
+                  <div className="w-px h-5 sm:h-6 bg-gray-100" />
+                  <div className="flex items-center gap-1 sm:gap-2 text-blue-600 shrink-0">
+                    <div className="p-1 sm:p-1.5 bg-blue-50 rounded-lg">
+                      <CheckCircle2 className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] font-bold opacity-60 capitalize whitespace-nowrap hidden xl:inline">Results</span>
-                      <span className="text-xs font-black leading-none">
-                        {result.total} <span className="hidden xl:inline">matching</span><span className="xl:hidden">match</span>
+                      <span className="text-[7px] sm:text-[9px] font-bold opacity-60 capitalize whitespace-nowrap hidden lg:inline">Results</span>
+                      <span className="text-[10px] sm:text-xs font-black leading-none">
+                        {result.total} <span className="hidden lg:inline">matching</span><span className="lg:hidden">match</span>
                       </span>
                     </div>
                   </div>
@@ -975,25 +975,25 @@ const Dashboard: React.FC = () => {
             </div>
 
             {/* Divider between Status and Actions */}
-            <div className="w-px h-6 bg-gray-100" />
+            <div className="w-px h-5 sm:h-6 bg-gray-100" />
 
             {/* Actions Block */}
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="flex items-center gap-3 pr-3 border-r border-gray-100 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-3 pr-1.5 sm:pr-3 border-r border-gray-100 shrink-0">
                 <button
                   onClick={() => handleSearch(1)}
                   disabled={isLoading}
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3 xl:px-5 py-2 rounded-xl font-black text-xs transition-all shadow-md shadow-blue-100 active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                  className="flex items-center gap-1 sm:gap-2 bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-black text-[10px] sm:text-xs transition-all shadow-md shadow-blue-100 active:scale-95 disabled:opacity-50 whitespace-nowrap"
                 >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4 shrink-0" />}
-                  <span className="hidden xl:inline">Search</span>
+                  {isLoading ? <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" /> : <Search className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" />}
+                  <span className="hidden md:inline">Search</span>
                 </button>
                 <button
                   onClick={handleClear}
-                  className="flex items-center gap-1.5 group text-gray-400 hover:text-gray-600 transition-colors shrink-0"
+                  className="flex items-center gap-1 sm:gap-1.5 group text-gray-400 hover:text-gray-600 transition-colors shrink-0"
                 >
-                  <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300 shrink-0" />
-                  <span className="text-xs font-bold hidden xl:inline">Clear</span>
+                  <X className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:rotate-90 transition-transform duration-300 shrink-0" />
+                  <span className="text-[10px] sm:text-xs font-bold hidden md:inline">Clear</span>
                 </button>
               </div>
 
