@@ -405,7 +405,7 @@ function getFilterOptionsFast() {
 
       if (inst) institutes.add(inst);
       if (dept) departments.add(dept);
-      if (bat)  batches.add(bat);
+      if (bat && /^\d+$/.test(bat))  batches.add(bat);
       trainings.add(trn  ? trn  : BLANK_LABEL);
       trainingDates.add(trnDate ? trnDate : BLANK_LABEL);
       campuses.add(cam   ? cam  : BLANK_LABEL);

@@ -113,6 +113,14 @@ const Dashboard: React.FC = () => {
     }
     return null;
   });
+
+  const filteredBatches = useMemo(() => {
+    if (!options?.batches) return [];
+    return options.batches.filter(b => {
+      const s = String(b).trim();
+      return s !== "" && /^\d+$/.test(s);
+    });
+  }, [options?.batches]);
   const [isInstantLoaded, setIsInstantLoaded] = useState(() => {
     try {
       const savedMeta = localStorage.getItem("ex_options_meta");
@@ -1041,7 +1049,7 @@ const Dashboard: React.FC = () => {
           <FilterDropdown 
             label="HSC Batch" 
             placeholder="Select Batch" 
-            options={options?.batches || []} 
+            options={filteredBatches} 
             selected={filters.batch}
             onChange={(v) => setFilters(prev => ({ ...prev, batch: v }))}
           />
