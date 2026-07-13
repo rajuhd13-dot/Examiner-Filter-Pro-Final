@@ -1128,7 +1128,7 @@ const Dashboard: React.FC = () => {
 
               {/* Threshold Row */}
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 flex-1">
+                <div className="flex flex-col gap-1 flex-1">
                   <input 
                     type="number" 
                     value={filters.allowEnglish || ""} 
@@ -1136,8 +1136,9 @@ const Dashboard: React.FC = () => {
                     className="w-full bg-white border border-gray-100 rounded-xl px-2 py-1.5 text-center font-bold text-blue-600 text-xs focus:outline-none focus:ring-2 focus:ring-blue-50 focus:border-blue-400 transition-all shadow-sm"
                     placeholder="55"
                   />
+                  <div className="text-[10px] font-bold text-gray-400 text-center tracking-wider mt-0.5">English</div>
                 </div>
-                <div className="flex items-center gap-2 flex-1">
+                <div className="flex flex-col gap-1 flex-1">
                   <input 
                     type="number" 
                     value={filters.allowOthers || ""} 
@@ -1145,6 +1146,7 @@ const Dashboard: React.FC = () => {
                     className="w-full bg-white border border-gray-100 rounded-xl px-2 py-1.5 text-center font-bold text-blue-600 text-xs focus:outline-none focus:ring-2 focus:ring-blue-50 focus:border-blue-400 transition-all shadow-sm"
                     placeholder="48"
                   />
+                  <div className="text-[10px] font-bold text-gray-400 text-center tracking-wider mt-0.5">Ban, P, C, M, B, I</div>
                 </div>
               </div>
             </div>
