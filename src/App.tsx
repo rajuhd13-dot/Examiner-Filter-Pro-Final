@@ -862,12 +862,12 @@ const Dashboard: React.FC = () => {
     <div className="min-h-screen bg-[#F0F4F9] text-gray-900 font-sans pb-12">
       {/* Top Navigation */}
       <header className="sticky top-0 z-[100] bg-blue-600 shadow-md">
-        <div className="w-full px-4 sm:px-6 h-16 flex flex-row items-center justify-between gap-3 md:gap-6">
+        <div className="w-full px-4 sm:px-6 h-16 flex flex-row items-center justify-between gap-3 md:gap-6 overflow-x-auto">
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <div className="bg-white/10 p-1.5 sm:p-2 rounded-xl border border-white/20">
               <FileSpreadsheet className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <h1 className="text-sm sm:text-lg font-bold text-white tracking-tight mr-1 sm:mr-2">Examiner Pro</h1>
+            <h1 className="text-sm sm:text-lg font-bold text-white tracking-tight mr-1 sm:mr-2">Examiner Assessment Dashboard</h1>
             
             {/* Pill: Auto Live Sync */}
             <div className="flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 bg-white/10 rounded-full border border-white/10 whitespace-nowrap">
@@ -897,7 +897,7 @@ const Dashboard: React.FC = () => {
 
           </div>
 
-          <div className="bg-white p-0.5 sm:p-1 pr-1.5 sm:pr-2 pl-2 sm:pl-3 rounded-full shadow-sm flex items-center gap-1 sm:gap-1.5 ml-auto flex-nowrap max-w-full">
+          <div className="bg-white p-0.5 sm:p-1 pr-1.5 sm:pr-2 pl-2 sm:pl-3 rounded-full shadow-sm flex items-center gap-1 sm:gap-1.5 ml-auto flex-nowrap shrink-0 max-w-full">
             {/* Stats & Status Area */}
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               {/* Total Records */}
@@ -1412,8 +1412,7 @@ const Dashboard: React.FC = () => {
       
       {/* Footer Branding */}
       <footer className="mt-4 mb-12 text-center">
-        <p className="text-[11px] text-gray-400 font-bold capitalize mb-1">Examiner Information Management</p>
-        <p className="text-[9px] text-gray-300">Secure Environment / Data Protected by Google Workspace Policy</p>
+        <p className="text-[11px] text-gray-400 font-bold mb-1">Copyright @ Exam Scripts Department. All rights reserved. 2026</p>
       </footer>
 
       {/* Floating Success Toast / Background Sync Notification */}
