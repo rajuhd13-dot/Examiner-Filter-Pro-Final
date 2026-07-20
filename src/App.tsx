@@ -945,8 +945,8 @@ const Dashboard: React.FC = () => {
                     )}>
                       {isInstantLoaded ? (
                         <>
-                          <span className="hidden lg:inline">Instant Mode Active</span>
-                          <span className="lg:hidden">Instant</span>
+                          <span className="hidden lg:inline">Live System</span>
+                          <span className="lg:hidden">Live</span>
                         </>
                       ) : (isSyncing ? "Syncing..." : (options ? "Connected" : (isPinged === false ? "Offline" : "Checking...")))}
                     </span>
